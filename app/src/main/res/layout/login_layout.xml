@@ -95,11 +95,11 @@
                     <EditText
                         android:id="@+id/login_mobile"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:digits="0123456789"
                         android:background="@drawable/editbg"
                         android:inputType="number"
-                        android:padding="18dp"
+                        android:paddingLeft="18dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/colorAccent"
                         android:textSize="16sp" />
@@ -122,13 +122,13 @@
                     <EditText
                         android:id="@+id/login_password"
                         android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:drawablePadding="8dp"
                         android:background="@drawable/editbg"
                         android:inputType="textPassword"
-                        android:padding="28dp"
+                        android:paddingLeft="18dp"
                         android:singleLine="true"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textColorHint="@color/colorPrimary"
                         android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -168,7 +168,6 @@
                     android:id="@+id/loginBtn"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="dp"
                     android:background="@drawable/editbg"
                     android:backgroundTint="@color/colorPrimary"
                     android:padding="3dp"
