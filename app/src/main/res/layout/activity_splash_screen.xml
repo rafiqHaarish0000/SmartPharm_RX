@@ -20,7 +20,7 @@
                 android:layout_height="120dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/margin_15dp"
-                android:src="@drawable/logo" />
+                android:src="@drawable/mediclogo" />
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
 

@@ -8,76 +8,102 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/bg_image">
+    android:background="@drawable/medicosignuo">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <com.frontendsource.drugstore.customfonts.TextViewBold
+                android:id="@+id/textViewBold2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="60dp"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="SmartPharma"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/mediclogo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewBold2" />
+
+            <com.frontendsource.drugstore.customfonts.TextViewBold
+                android:id="@+id/textViewBold"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:baselineAligned="false"
+                android:gravity="center"
+                android:padding="20dp"
+                android:text="Registeration "
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp">
-
-                <com.frontendsource.drugstore.customfonts.TextViewBold
-                    android:layout_width="fill_parent"
+                android:paddingRight="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewBold">
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:text="@string/signUp"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="35sp"
-                    android:textStyle="bold" />
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="100dp"
-                    app:cardCornerRadius="50dp">
-
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/margin_15dp"
-                        android:src="@drawable/logo" />
-                </androidx.cardview.widget.CardView>
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:layout_marginTop="@dimen/_18dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="Full name"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_marginTop="7dp"
+                    android:layout_height="60dp"
+                    app:boxBackgroundMode="outline"
                     android:gravity="bottom">
 
                     <EditText
                         android:id="@+id/fullName"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
+                        android:background="@drawable/editbg"
                         android:digits="abcdefghijklmnopqrstuvwxyz . ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                         android:drawablePadding="8dp"
-                        android:padding="8dp"
                         android:gravity="bottom"
-                        android:hint="@string/fullName"
                         android:inputType="textCapWords"
+                        android:padding="28dp"
                         android:singleLine="true"
                         android:textColor="@color/white"
                         android:textColorHint="@color/colorPrimary"
                         android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="2px"
-                    android:background="@color/colorPrimary" />
 
                 <!--    <com.google.android.material.textfield.TextInputLayout-->
                 <!--        android:layout_width="match_parent"-->
@@ -100,45 +126,49 @@
                 <!--            android:textColorHint="@color/colorPrimary"-->
                 <!--            android:textSize="16sp" />-->
                 <!--    </com.google.android.material.textfield.TextInputLayout>-->
-
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="2px"
-                    android:background="@color/colorPrimary" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="Mobile Number"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
-                    android:layout_marginTop="10dp"
                     android:gravity="bottom">
 
                     <EditText
                         android:id="@+id/mobileNumber"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
+                        android:background="@drawable/editbg"
                         android:digits="0123456789"
                         android:drawablePadding="8dp"
-                        android:padding="8dp"
-                        android:gravity="bottom"
-                        android:hint="@string/mobileNumber"
                         android:inputType="phone"
                         android:maxLength="10"
+                        android:padding="28dp"
                         android:singleLine="true"
                         android:textColor="@color/white"
                         android:textColorHint="@color/colorPrimary"
                         android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="2px"
-                    android:background="@color/colorPrimary" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="Password"/>
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
-                    android:layout_marginTop="10dp"
+
                     android:gravity="bottom"
                     app:passwordToggleEnabled="true">
 
@@ -146,30 +176,25 @@
                         android:id="@+id/password"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
+                        android:background="@drawable/editbg"
                         android:drawablePadding="8dp"
-                        android:padding="8dp"
-                        android:gravity="bottom"
-                        android:hint="@string/passowrd"
                         android:inputType="textPassword"
+                        android:padding="28dp"
                         android:singleLine="true"
                         android:textColor="@color/white"
                         android:textColorHint="@color/colorPrimary"
                         android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="2px"
-                    android:background="@color/colorPrimary" />
-
                 <CheckBox
                     android:id="@+id/terms_conditions"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
+                    android:textColorHint="@color/colorPrimary"
+                    android:layout_marginTop="17dp"
+                    android:layout_gravity="center"
                     android:text="@string/terms_conditions"
-                    android:textColor="@color/black"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="14sp" />
 
                 <Button
@@ -177,10 +202,11 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:background="@drawable/loginbutton_selector"
+                    android:background="@drawable/editbg"
+                    android:backgroundTint="@color/colorPrimary"
                     android:padding="3dp"
                     android:text="@string/signUp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
@@ -202,6 +228,6 @@
                 android:id="@+id/progress_bar"
                 layout="@layout/progressbar"
                 android:visibility="gone" />
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </RelativeLayout>
