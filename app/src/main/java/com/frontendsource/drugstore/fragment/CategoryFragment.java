@@ -71,12 +71,14 @@ public class CategoryFragment extends Fragment implements CategorySelectCallBack
         recyclerView = view.findViewById(R.id.category_rv);
         subCateRecyclerview = view.findViewById(R.id.sub_category_rv);
         progress = view.findViewById(R.id.progress_bar);
+/*
 
         localStorage = new LocalStorage(getContext());
         user = gson.fromJson(localStorage.getUserLogin(), User.class);
         token = new Token(user.getToken());
 
         getCategoryData();
+*/
 
 
         return view;

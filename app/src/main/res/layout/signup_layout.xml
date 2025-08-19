@@ -26,6 +26,16 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp">
 
+                <com.frontendsource.drugstore.customfonts.TextViewBold
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="@string/signUp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="35sp"
+                    android:textStyle="bold" />
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
@@ -40,16 +50,6 @@
                         android:layout_marginTop="@dimen/margin_15dp"
                         android:src="@drawable/logo" />
                 </androidx.cardview.widget.CardView>
-
-                <com.frontendsource.drugstore.customfonts.TextViewBold
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:text="@string/signUp"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="35sp"
-                    android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -169,7 +169,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
                     android:text="@string/terms_conditions"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="14sp" />
 
                 <Button
@@ -180,11 +180,11 @@
                     android:background="@drawable/loginbutton_selector"
                     android:padding="3dp"
                     android:text="@string/signUp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
-                <com.frontendsource.drugstore.customfonts.TextViewRegular
+                <TextView
                     android:id="@+id/already_user"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -193,7 +193,7 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:text="@string/already_user"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/black"
                     android:textSize="15sp" />
 
             </LinearLayout>

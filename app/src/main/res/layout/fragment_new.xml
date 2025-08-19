@@ -12,9 +12,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#D3FFFFFF" />
+        android:background="@drawable/bg_image" />
 
-
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:textColor="@color/black"
+    android:text="New products will coming soon...."
+    android:textSize="@dimen/_20dp"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/new_product_rv"
         android:layout_width="match_parent"

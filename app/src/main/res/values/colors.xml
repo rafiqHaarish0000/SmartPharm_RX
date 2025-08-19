@@ -46,7 +46,7 @@
     <color name="bottomNavIconColor">#858585</color>
     <color name="bottomNavTextColor">#929292</color>
 
-    <color name="black">#000</color>
+    <color name="black">#000000</color>
     <color name="lightorange">#fdf2df</color>
     <color name="lightorangedark">#ebd6ab</color>
     <color name="float_transparent">#00000000</color>

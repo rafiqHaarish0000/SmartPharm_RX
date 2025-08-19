@@ -152,9 +152,15 @@ public class SignUpFragment extends Fragment implements OnClickListener {
 
     }
 
-    private void registerUser(User userString) {
+    private void registerUser(User user) {
         showProgressDialog();
-        Call<UserResult> call = RestClient.getRestService(getContext()).register(userString);
+        String userString = gson.toJson(user);
+        localStorage.createUserLoginSession(userString);
+        Toast.makeText(getContext(), "User registered successfully", Toast.LENGTH_LONG).show();
+
+        startActivity(new Intent(getContext(), OTPActivity.class));
+        hideProgressDialog();
+     /*   Call<UserResult> call = RestClient.getRestService(getContext()).register(userString);
         call.enqueue(new Callback<UserResult>() {
             @Override
             public void onResponse(Call<UserResult> call, Response<UserResult> response) {
@@ -189,7 +195,7 @@ public class SignUpFragment extends Fragment implements OnClickListener {
                 Log.d("Error==> ", t.getMessage());
                 hideProgressDialog();
             }
-        });
+        });*/
     }
 
     private void hideProgressDialog() {

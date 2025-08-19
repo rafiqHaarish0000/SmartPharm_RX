@@ -67,10 +67,10 @@ public class PopularProductFragment extends Fragment {
 
         progress = view.findViewById(R.id.progress_bar);
 
-        localStorage = new LocalStorage(getContext());
+     /*   localStorage = new LocalStorage(getContext());
         user = gson.fromJson(localStorage.getUserLogin(), User.class);
         token = new Token(user.getToken());
-        getPopularProduct();
+        getPopularProduct();*/
 
 
         return view;

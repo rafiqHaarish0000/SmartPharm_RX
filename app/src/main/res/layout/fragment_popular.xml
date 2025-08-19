@@ -12,12 +12,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#D3FFFFFF" />
+        android:background="@drawable/product"
+        android:fitsSystemWindows="true"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/popular_product_rv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
     </androidx.recyclerview.widget.RecyclerView>
 
