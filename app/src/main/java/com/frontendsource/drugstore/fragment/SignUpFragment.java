@@ -105,16 +105,15 @@ public class SignUpFragment extends Fragment implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.signUpBtn:
-                // Call checkValidation method
-                checkValidation();
-                break;
+        int viewId = v.getId();
 
-            case R.id.already_user:
-                // Replace login fragment
-                new LoginRegisterActivity().replaceLoginFragment();
-                break;
+        if (viewId == R.id.signUpBtn) {
+            // Call checkValidation method
+            checkValidation();
+
+        } else if (viewId == R.id.already_user) {
+            // Replace login fragment
+            new LoginRegisterActivity().replaceLoginFragment();
         }
 
     }

@@ -99,27 +99,25 @@ public class ForgotPasswordFragment extends Fragment implements
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.backToLoginBtn:
+        int viewId = v.getId();
 
-                // Replace Login Fragment on Back Presses
-                new LoginRegisterActivity().replaceLoginFragment();
-                break;
+        if (viewId == R.id.backToLoginBtn) {
+            // Replace Login Fragment on Back Presses
+            new LoginRegisterActivity().replaceLoginFragment();
 
-            case R.id.forgot_button:
-                // Call Submit button task
-                submitButtonTask();
-                break;
-            case R.id.reset_button:
-                // Call Submit button task
-                resetButtonTask();
-                break;
-            case R.id.resend_button:
-                // Call Submit button task
-                forgotPassword();
-                break;
+        } else if (viewId == R.id.forgot_button) {
+            // Call Submit button task
+            submitButtonTask();
 
+        } else if (viewId == R.id.reset_button) {
+            // Call Submit button task
+            resetButtonTask();
+
+        } else if (viewId == R.id.resend_button) {
+            // Call Submit button task
+            forgotPassword();
         }
+
 
     }
 

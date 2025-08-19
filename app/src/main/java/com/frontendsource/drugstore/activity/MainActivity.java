@@ -228,12 +228,12 @@ public class MainActivity extends BaseActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.cart_action:
-                startActivity(new Intent(getApplicationContext(), CartActivity.class));
-                overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-                return true;
+        if (item.getItemId() == R.id.cart_action) {
+            startActivity(new Intent(getApplicationContext(), CartActivity.class));
+            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+            return true;
         }
+
         return super.onOptionsItemSelected(item);
 
     }
@@ -302,41 +302,28 @@ public class MainActivity extends BaseActivity
         Fragment fragment = null;
 
         //initializing the fragment object which is selected
-        switch (itemId) {
-            case R.id.nav_home:
-                fragment = new HomeFragment();
-                break;
-            case R.id.nav_profile:
-                fragment = new ProfileFragment();
-                break;
-            case R.id.nav_category:
-                fragment = new CategoryFragment();
-                break;
-            case R.id.nav_popular_products:
-                fragment = new PopularProductFragment();
-                break;
-            case R.id.nav_new_product:
-                fragment = new NewProductFragment();
-                break;
-
-            case R.id.nav_offers:
-                fragment = new OffrersFragment();
-                break;
-
-            case R.id.nav_my_order:
-                fragment = new MyOrderFragment();
-                break;
-            case R.id.nav_my_cart:
-                startActivity(new Intent(getApplicationContext(), CartActivity.class));
-                overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-                break;
-            case R.id.nav_my_prescription:
-                startActivity(new Intent(getApplicationContext(), PrescriptionActivity.class));
-                overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-                break;
-
-
+        if (itemId == R.id.nav_home) {
+            fragment = new HomeFragment();
+        } else if (itemId == R.id.nav_profile) {
+            fragment = new ProfileFragment();
+        } else if (itemId == R.id.nav_category) {
+            fragment = new CategoryFragment();
+        } else if (itemId == R.id.nav_popular_products) {
+            fragment = new PopularProductFragment();
+        } else if (itemId == R.id.nav_new_product) {
+            fragment = new NewProductFragment();
+        } else if (itemId == R.id.nav_offers) {
+            fragment = new OffrersFragment();
+        } else if (itemId == R.id.nav_my_order) {
+            fragment = new MyOrderFragment();
+        } else if (itemId == R.id.nav_my_cart) {
+            startActivity(new Intent(getApplicationContext(), CartActivity.class));
+            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+        } else if (itemId == R.id.nav_my_prescription) {
+            startActivity(new Intent(getApplicationContext(), PrescriptionActivity.class));
+            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
         }
+
 
         //replacing the fragment
         if (fragment != null) {

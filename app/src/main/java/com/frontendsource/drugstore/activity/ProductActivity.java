@@ -182,22 +182,22 @@ public class ProductActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                // todo: goto back activity from here
+        int itemId = item.getItemId();
 
-                Intent intent = new Intent(ProductActivity.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
-                return true;
-
-            case R.id.cart_action:
-                startActivity(new Intent(getApplicationContext(), CartActivity.class));
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (itemId == android.R.id.home) {
+            // todo: goto back activity from here
+            Intent intent = new Intent(ProductActivity.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+            return true;
+        } else if (itemId == R.id.cart_action) {
+            startActivity(new Intent(getApplicationContext(), CartActivity.class));
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
+
     }
 
 

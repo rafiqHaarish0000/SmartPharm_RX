@@ -271,19 +271,21 @@ public class ProductViewActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                // todo: goto back activity from here
+        int itemId = item.getItemId();
 
-                onBackPressed();
-                return true;
+        if (itemId == android.R.id.home) {
+            // todo: goto back activity from here
+            onBackPressed();
+            return true;
 
-            case R.id.cart_action:
-                startActivity(new Intent(getApplicationContext(), CartActivity.class));
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        } else if (itemId == R.id.cart_action) {
+            startActivity(new Intent(getApplicationContext(), CartActivity.class));
+            return true;
+
+        } else {
+            return super.onOptionsItemSelected(item);
         }
+
     }
 
 

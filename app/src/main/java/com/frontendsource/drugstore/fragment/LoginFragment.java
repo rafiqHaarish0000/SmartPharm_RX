@@ -164,31 +164,32 @@ public class LoginFragment extends Fragment implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.loginBtn:
-                checkValidation();
-                break;
+        int viewId = v.getId();
 
-            case R.id.forgot_password:
+        if (viewId == R.id.loginBtn) {
+            checkValidation();
 
-                // Replace forgot password fragment with animation
-                fragmentManager
-                        .beginTransaction()
-                        .setCustomAnimations(R.anim.right_enter, R.anim.left_out)
-                        .replace(R.id.frameContainer,
-                                new ForgotPasswordFragment(),
-                                Utils.ForgotPassword_Fragment).commit();
-                break;
-            case R.id.createAccount:
+        } else if (viewId == R.id.forgot_password) {
+            // Replace forgot password fragment with animation
+            fragmentManager
+                    .beginTransaction()
+                    .setCustomAnimations(R.anim.right_enter, R.anim.left_out)
+                    .replace(R.id.frameContainer,
+                            new ForgotPasswordFragment(),
+                            Utils.ForgotPassword_Fragment)
+                    .commit();
 
-                // Replace signup frgament with animation
-                fragmentManager
-                        .beginTransaction()
-                        .setCustomAnimations(R.anim.right_enter, R.anim.left_out)
-                        .replace(R.id.frameContainer, new SignUpFragment(),
-                                Utils.SignUp_Fragment).commit();
-                break;
+        } else if (viewId == R.id.createAccount) {
+            // Replace signup fragment with animation
+            fragmentManager
+                    .beginTransaction()
+                    .setCustomAnimations(R.anim.right_enter, R.anim.left_out)
+                    .replace(R.id.frameContainer,
+                            new SignUpFragment(),
+                            Utils.SignUp_Fragment)
+                    .commit();
         }
+
 
     }
 
