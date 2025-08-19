@@ -208,6 +208,12 @@ public class LoginFragment extends Fragment implements OnClickListener {
             new CustomToast().Show_Toast(getActivity(), view, "Enter both credentials.");
             vibrate(200);
 
+        }else if (getMobile.length() < 10) {
+
+            loginLayout.startAnimation(shakeAnimation);
+            new CustomToast().Show_Toast(getActivity(), view, "Enter valid Mobile Number.");
+            vibrate(200);
+
         } else if (getMobile.length() > 15) {
 
             loginLayout.startAnimation(shakeAnimation);

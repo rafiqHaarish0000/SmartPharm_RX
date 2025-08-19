@@ -36,7 +36,7 @@ public class CustomToast {
         text.setText(error);
 
         Toast toast = new Toast(context);// Get Toast Context
-        toast.setGravity(Gravity.TOP | Gravity.FILL_HORIZONTAL, 0, 0);// Set
+        toast.setGravity(Gravity.BOTTOM | Gravity.FILL_HORIZONTAL, 0, 0);// Set
         // Toast
         // gravity
         // and
