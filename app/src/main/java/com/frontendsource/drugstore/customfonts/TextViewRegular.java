@@ -29,6 +29,7 @@ public class TextViewRegular extends TextView {
             Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "fonts/Poppins-Regular.ttf");
             setTypeface(tf);
         }
+
     }
 
 }

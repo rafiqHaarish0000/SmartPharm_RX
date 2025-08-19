@@ -5,9 +5,9 @@
    * Created by : Santosh Kumar Dash:- http://santoshdash.epizy.com
    -->
 <resources>
-    <color name="colorPrimary">#69BCFC</color>
-    <color name="colorPrimaryDark">#69BCFC</color>
-    <color name="colorAccent">#00BCD4</color>
+    <color name="colorPrimary">#DE5659</color>
+    <color name="colorPrimaryDark">#DE5659</color>
+    <color name="colorAccent">#DE5659</color>
     <color name="red_400">#56ab2f</color>
     <color name="yellow_400">#ff009688</color>
     <color name="white">#FFFFFF</color>
@@ -46,7 +46,7 @@
     <color name="bottomNavIconColor">#858585</color>
     <color name="bottomNavTextColor">#929292</color>
 
-    <color name="black">#000</color>
+    <color name="black">#000000</color>
     <color name="lightorange">#fdf2df</color>
     <color name="lightorangedark">#ebd6ab</color>
     <color name="float_transparent">#00000000</color>

@@ -66,7 +66,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
     LocalStorage localStorage;
     String userString;
     User user;
-    String firebaseToken;
+    String firebaseToken="";
 
     public LoginFragment() {
 
@@ -201,12 +201,25 @@ public class LoginFragment extends Fragment implements OnClickListener {
 
 
         // Check for both field is empty or not
-        if (getMobile.equals("") || getMobile.length() == 0
-                || getPassword.equals("") || getPassword.length() == 0) {
+        if (getMobile == null || getMobile.trim().isEmpty() ||
+                getPassword == null || getPassword.trim().isEmpty()) {
+
             loginLayout.startAnimation(shakeAnimation);
-            new CustomToast().Show_Toast(getActivity(), view,
-                    "Enter both credentials.");
+            new CustomToast().Show_Toast(getActivity(), view, "Enter both credentials.");
             vibrate(200);
+
+        } else if (getMobile.length() > 15) {
+
+            loginLayout.startAnimation(shakeAnimation);
+            new CustomToast().Show_Toast(getActivity(), view, "Mobile number should not exceed 15 digits.");
+            vibrate(200);
+
+        } else if (getPassword.length() < 6) {
+
+            loginLayout.startAnimation(shakeAnimation);
+            new CustomToast().Show_Toast(getActivity(), view, "Password must be at least 6 characters.");
+            vibrate(200);
+
         } else if (NetworkCheck.isNetworkAvailable(getContext())) {
             user = new User(getMobile, getPassword, firebaseToken);
             login(user);
@@ -215,10 +228,10 @@ public class LoginFragment extends Fragment implements OnClickListener {
 
     private void login(User user) {
         showProgressDialog();
-       // localStorage.createUserLoginSession(userString);
+        localStorage.createUserLoginSession(userString);
 
-            startActivity(new Intent(getContext(), OTPActivity.class));
-            getActivity().finish();
+        startActivity(new Intent(getContext(), OTPActivity.class));
+        getActivity().finish();
 
       /*  Call<UserResult> call = RestClient.getRestService(getContext()).login(user);
         call.enqueue(new Callback<UserResult>() {

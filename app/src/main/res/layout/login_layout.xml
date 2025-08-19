@@ -6,9 +6,10 @@
    -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/bg_image">
+    android:background="@drawable/layoutng">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,79 +17,105 @@
 
         android:fillViewport="true">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
+
+            <com.frontendsource.drugstore.customfonts.TextViewBold
+                android:id="@+id/textViewBold1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="16dp"
+                android:baselineAligned="false"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="SmartPharma"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/imageView2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/mediclogo"
+                app:layout_constraintBottom_toTopOf="@+id/textViewBold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <com.frontendsource.drugstore.customfonts.TextViewBold
+                android:id="@+id/textViewBold"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="64dp"
+                android:baselineAligned="false"
+                android:gravity="center"
+                android:padding="20dp"
+                android:text="Welcome"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/login_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <LinearLayout
                 android:id="@+id/login_layout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:layout_marginBottom="32dp"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center_horizontal"
-                    app:cardCornerRadius="50dp">
-
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/margin_15dp"
-                        android:src="@drawable/logo" />
-                </androidx.cardview.widget.CardView>
-
-
-                <com.frontendsource.drugstore.customfonts.TextViewBold
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="30dp"
-                    android:baselineAligned="false"
-                    android:gravity="center"
-                    android:padding="20dp"
-                    android:text="@string/login"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="35sp"
-                    android:textStyle="bold" />
-
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="@color/black"
+    android:textStyle="normal"
+    android:layout_marginLeft="8dp"
+    android:text="Mobile Number"/>
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:layout_marginTop="20dp"
                     android:gravity="bottom">
 
                     <EditText
                         android:id="@+id/login_mobile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
                         android:digits="0123456789"
-                        android:drawablePadding="8dp"
-                        android:gravity="bottom"
-                        android:hint="@string/mobileNumber"
+                        android:background="@drawable/editbg"
                         android:inputType="number"
-                        android:maxLines="10"
-                        android:padding="8dp"
-                        android:singleLine="true"
-                        android:textColor="@color/white"
-                        android:textColorHint="@color/colorPrimary"
+                        android:padding="28dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/colorAccent"
                         android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
-
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="2px"
-                    android:background="@color/colorPrimaryDark" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textStyle="normal"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="Password"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:layout_marginTop="20dp"
                     android:gravity="bottom"
                     app:passwordToggleEnabled="true">
 
@@ -96,22 +123,16 @@
                         android:id="@+id/login_password"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
                         android:drawablePadding="8dp"
-                        android:gravity="bottom"
-                        android:hint="@string/passowrd"
+                        android:background="@drawable/editbg"
                         android:inputType="textPassword"
-                        android:padding="8dp"
+                        android:padding="28dp"
                         android:singleLine="true"
                         android:textColor="@color/white"
                         android:textColorHint="@color/colorPrimary"
                         android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2px"
-                    android:background="@color/colorPrimaryDark" />
 
                 <LinearLayout
                     android:layout_width="fill_parent"
@@ -130,15 +151,16 @@
                         android:textSize="14sp"
                         android:visibility="gone" />
 
-                    <com.frontendsource.drugstore.customfonts.TextViewRegular
+                    <TextView
                         android:id="@+id/forgot_password"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="end"
                         android:padding="5dp"
+                        android:textColor="@color/colorPrimary"
                         android:text="@string/forgot"
-                        android:textColor="@color/black"
+                        android:textStyle="bold"
                         android:textSize="14sp" />
                 </LinearLayout>
 
@@ -146,33 +168,35 @@
                     android:id="@+id/loginBtn"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:background="@drawable/loginbutton_selector"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/editbg"
+                    android:backgroundTint="@color/colorPrimary"
                     android:padding="3dp"
                     android:text="@string/login"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="17sp"
                     android:textStyle="bold" />
-            </LinearLayout>
 
-            <com.frontendsource.drugstore.customfonts.TextViewRegular
-                android:id="@+id/createAccount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/login_layout"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="15dp"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="@string/newUser"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/createAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/login_layout"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="@string/newUser"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
 
             <include
                 android:id="@+id/progress_bar"
                 layout="@layout/progressbar"
                 android:visibility="gone" />
 
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </RelativeLayout>

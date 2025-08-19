@@ -25,7 +25,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     private LayoutInflater layoutInflater;
     private Integer[] images = {R.drawable.welcome_slider1, R.drawable.welcome_slider2, R.drawable.welcome_slider3};
     private String[] title = {"Purchase Online", "Choose and Checkout","Get Your Order"};
-    private String[] description = {"Dummy text is text that is used in the publishing industry or by web designers to occupy the space", "Dummy text is text that is used in the publishing industry or by web designers to occupy the space","Dummy text is text that is used in the publishing industry or by web designers to occupy the space"};
+    private String[] description = {"Fast system that helps people quickly check medicine stock, prices, and prescriptions—making online buying smooth and easy.", "Your Health, Our Mission—Delivering Care with Every Click.","Order with confidence—powered by smart systems, delivered with precision. Where health meets innovation, your medicine is just a click away."};
 
     public ViewPagerAdapter(Context context) {
         this.context = context;
