@@ -320,7 +320,7 @@ public class MainActivity extends BaseActivity
             startActivity(new Intent(getApplicationContext(), CartActivity.class));
             overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
         } else if (itemId == R.id.nav_my_prescription) {
-            startActivity(new Intent(getApplicationContext(), PrescriptionActivity.class));
+            startActivity(new Intent(getApplicationContext(), PrescriptionsActivity.class));
             overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
         }
 

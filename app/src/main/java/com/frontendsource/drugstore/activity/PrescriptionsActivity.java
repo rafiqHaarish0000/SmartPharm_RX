@@ -16,13 +16,18 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.Manifest;
 
-import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -33,6 +38,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 
+import com.frontendsource.drugstore.R;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.text.Text;
 import com.google.mlkit.vision.text.TextRecognition;
@@ -40,7 +46,6 @@ import com.google.mlkit.vision.text.TextRecognizer;
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 //import com.google.protobuf.ByteString;
 
-import org.apache.commons.text.similarity.LevenshteinDistance;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -56,18 +61,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import com.googlecode.tesseract.android.TessBaseAPI;
 import com.yalantis.ucrop.UCrop;
 
-public class PrescriptionsActivity extends AppCompatActivity {
+public class PrescriptionsActivity extends AppCompatActivity implements
+        AdapterView.OnItemSelectedListener{
 
     private static final int CAMERA_PERMISSION_REQUEST = 201;
     private static final int GALLERY_PERMISSION_REQUEST = 202;
     private Uri imageUri;
+    String[] category = { "Select Report Type","Medical Reports", "Blood Reports", "Scan Reports", "Medicine Prescriptions"};
 
     private TextView resultText;
     private Button scanBtn;
+    RelativeLayout rl_cam;
     ImageView imageView;
+    String _title="";
 
     // Modern gallery picker
     private final ActivityResultLauncher<String> galleryLauncher = registerForActivityResult(
@@ -78,20 +86,28 @@ public class PrescriptionsActivity extends AppCompatActivity {
                 }
             });
     private List<String> medicineDictionary;
+    LinearLayout ll_cam;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_prescription_new);
 
 
         resultText = findViewById(R.id.resultText);
-        scanBtn = findViewById(R.id.scanBtn);
-        imageView = findViewById(R.id.imageview);
+        rl_cam = findViewById(R.id.rl_cam);
+        imageView = findViewById(R.id.image_preview);
+        ll_cam = findViewById(R.id.ll_cam);
+        Spinner spin = (Spinner) findViewById(R.id.spinner);
+        spin.setOnItemSelectedListener(this);
+        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,category);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Setting the ArrayAdapter data on the Spinner
+        spin.setAdapter(aa);
+
 //        medicineDictionary = loadMedicineDictionary();
 
-        scanBtn.setOnClickListener(v -> showImagePickerDialog());
+        rl_cam.setOnClickListener(v -> showImagePickerDialog());
     }
 
     private void checkCameraPermission() {
@@ -118,14 +134,7 @@ public class PrescriptionsActivity extends AppCompatActivity {
                 .show();
     }
     private void checkGalleryPermission() {
-//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-//                != PackageManager.PERMISSION_GRANTED) {
-//            ActivityCompat.requestPermissions(this,
-//                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-//                    GALLERY_PERMISSION_REQUEST);
-//        } else {
             pickFromGallery();
-//        }
     }
     private void openCamera() {
         File photoFile = new File(getCacheDir(), "camera_" + System.currentTimeMillis() + ".jpg");
@@ -155,8 +164,8 @@ public class PrescriptionsActivity extends AppCompatActivity {
         options.setFreeStyleCropEnabled(true);        // Allow free crop
         options.setToolbarTitle("Adjust Crop");       // Optional title
         options.setToolbarColor(getResources().getColor(R.color.purple_500));
-        options.setStatusBarColor(getResources().getColor(R.color.purple_700));
-        options.setActiveControlsWidgetColor(getResources().getColor(R.color.teal_200));
+        options.setStatusBarColor(getResources().getColor(R.color.purple_200));
+        options.setActiveControlsWidgetColor(getResources().getColor(R.color.material_deep_teal_20));
 
         // Start UCrop without fixed aspect ratio
         UCrop.of(sourceUri, Uri.fromFile(destFile))
@@ -196,6 +205,8 @@ public class PrescriptionsActivity extends AppCompatActivity {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
 //                        Bitmap bitmap1 = preprocessBitmap(bitmap);
 
+                        ll_cam.setVisibility(View.GONE);
+                        imageView.setVisibility(View.VISIBLE);
                         imageView.setImageBitmap(bitmap);
                         runTextRecognition(bitmap);
                     } catch (IOException e) {
@@ -231,4 +242,16 @@ public class PrescriptionsActivity extends AppCompatActivity {
                 });
     }
 
-  }
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if(position>0){
+            _title = category[position];
+        }
+        Toast.makeText(getApplicationContext(),category[position] , Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+}

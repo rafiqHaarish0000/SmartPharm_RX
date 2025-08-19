@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- External storage -->
+    <external-path name="external_files" path="." />
 
-    <!--change only the package name if you have change the package name of app-->
+    <!-- Internal files -->
+    <files-path name="internal_files" path="." />
 
-    <external-path name="my_images" path="AppName/Temp/" />
+    <!-- Internal cache (fix for your crash) -->
+    <cache-path name="internal_cache" path="." />
 
-    <external-path name="external_files" path="."/>
-
+    <!-- External cache (optional, if used) -->
+    <external-cache-path name="external_cache" path="." />
 </paths>
