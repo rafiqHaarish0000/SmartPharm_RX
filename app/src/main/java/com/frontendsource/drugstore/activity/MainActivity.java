@@ -261,12 +261,12 @@ public class MainActivity extends BaseActivity
         });
 
 
-        localStorage = new LocalStorage(getApplicationContext());
+      /*  localStorage = new LocalStorage(getApplicationContext());
         String userString = localStorage.getUserLogin();
         Gson gson = new Gson();
         userString = localStorage.getUserLogin();
         user = gson.fromJson(userString, User.class);
-
+*/
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -279,13 +279,13 @@ public class MainActivity extends BaseActivity
 
         TextView nav_user = hView.findViewById(R.id.nav_header_name);
         LinearLayout nav_footer = findViewById(R.id.footer_text);
-        if (user != null) {
-            nav_user.setText(user.getName());
-        }
+       // if (user != null) {
+            nav_user.setText("Kousalya");
+       // }
         nav_footer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                localStorage.logoutUser();
+               // localStorage.logoutUser();
                 startActivity(new Intent(getApplicationContext(), LoginRegisterActivity.class));
                 finish();
                 overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);

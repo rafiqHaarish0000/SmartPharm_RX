@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.Manifest.permission;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
@@ -25,6 +26,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -107,9 +109,9 @@ public class PrescriptionActivity extends AppCompatActivity  implements
          upload_btn =  findViewById(R.id.upload_btn);
          recyclerView =  findViewById(R.id.recycler_view);
          upload_frame =  findViewById(R.id.upload_frame);
-         localStorage = new LocalStorage(getApplicationContext());
+       /*  localStorage = new LocalStorage(getApplicationContext());
          String userString = localStorage.getUserLogin();
-         user = gson.fromJson(userString,User.class);
+         user = gson.fromJson(userString,User.class);*/
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Prescription");
@@ -131,7 +133,7 @@ public class PrescriptionActivity extends AppCompatActivity  implements
         });
 
 
-        getPrescriptionData();
+       // getPrescriptionData();
 
 
     }
@@ -185,8 +187,8 @@ public class PrescriptionActivity extends AppCompatActivity  implements
     }
 
     public void onSelectImage(View view) {
-        if(ContextCompat.checkSelfPermission(PrescriptionActivity.this, Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(PrescriptionActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)
+        if(ContextCompat.checkSelfPermission(PrescriptionActivity.this, permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(PrescriptionActivity.this, permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             checkMultiplePermissions();
         }else{
@@ -209,29 +211,57 @@ public class PrescriptionActivity extends AppCompatActivity  implements
     }
 
 
-    private void checkMultiplePermissions() {
+   /* private void checkMultiplePermissions() {
         if (Build.VERSION.SDK_INT >= 23) {
             List<String> permissionsNeeded = new ArrayList<String>();
             List<String> permissionsList = new ArrayList<String>();
 
-            if (!addPermission(permissionsList, Manifest.permission.CAMERA)) {
+            if (!addPermission(permissionsList, permission.CAMERA)) {
                 permissionsNeeded.add("CAMERA");
             }
 
-            if (!addPermission(permissionsList, android.Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            if (!addPermission(permissionsList, permission.READ_EXTERNAL_STORAGE)) {
                 permissionsNeeded.add("Read Storage");
             }
 
             if (permissionsList.size() > 0) {
-                requestPermissions(permissionsList.toArray(new String[permissionsList.size()]),
+                *//*requestPermissions(permissionsList.toArray(new String[permissionsList.size()]),
                         REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
-                return;
+                return;*//*
+
+            }
+        }
+    }*/
+
+    private void checkMultiplePermissions() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            List<String> permissionsNeeded = new ArrayList<>();
+            List<String> permissionsList = new ArrayList<>();
+
+            if (!addPermission(permissionsList, Manifest.permission.CAMERA)) {
+                permissionsNeeded.add("Camera");
+            }
+
+            if (!addPermission(permissionsList, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                permissionsNeeded.add("Read Storage");
+            }
+
+            if (!permissionsList.isEmpty()) {
+                requestPermissions(permissionsList.toArray(new String[0]), REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
             }
         }
     }
 
+    private boolean addPermission(List<String> permissionsList, String permission) {
+        if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+            permissionsList.add(permission);
+            return false;
+        }
+        return true;
+    }
 
 
+/*
     private boolean addPermission(List<String> permissionsList, String permission) {
         if (Build.VERSION.SDK_INT >= 23)
 
@@ -244,22 +274,99 @@ public class PrescriptionActivity extends AppCompatActivity  implements
             }
         return true;
     }
+*/
+@Override
+//@Override
+public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-    @Override
+    if (requestCode == REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS) {
+        Map<String, Integer> perms = new HashMap<>();
+        perms.put(Manifest.permission.CAMERA, PackageManager.PERMISSION_GRANTED);
+
+        String storagePermission;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            storagePermission = Manifest.permission.READ_MEDIA_IMAGES;
+        } else {
+            storagePermission = Manifest.permission.READ_EXTERNAL_STORAGE;
+        }
+        perms.put(storagePermission, PackageManager.PERMISSION_GRANTED);
+
+        for (int i = 0; i < permissions.length; i++) {
+            perms.put(permissions[i], grantResults[i]);
+        }
+
+        Integer cameraPerm = perms.get(Manifest.permission.CAMERA);
+        Integer storagePerm = perms.get(storagePermission);
+
+        if (cameraPerm != null && storagePerm != null &&
+                cameraPerm == PackageManager.PERMISSION_GRANTED &&
+                storagePerm == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "All permissions granted!", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this,
+                    "App requires Camera and Storage permissions. Please enable them in Settings.",
+                    Toast.LENGTH_LONG).show();
+
+            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                    Uri.fromParts("package", getPackageName(), null));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+    }
+}
+
+/*
+public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+    if (requestCode == REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS) {
+        Map<String, Integer> perms = new HashMap<>();
+        perms.put(Manifest.permission.CAMERA, PackageManager.PERMISSION_GRANTED);
+        perms.put(Manifest.permission.READ_EXTERNAL_STORAGE, PackageManager.PERMISSION_GRANTED);
+
+        for (int i = 0; i < permissions.length; i++) {
+            perms.put(permissions[i], grantResults[i]);
+        }
+
+        Integer cameraPerm = perms.get(Manifest.permission.CAMERA);
+        Integer storagePerm = perms.get(Manifest.permission.READ_EXTERNAL_STORAGE);
+
+        if (cameraPerm != null && storagePerm != null &&
+                cameraPerm == PackageManager.PERMISSION_GRANTED &&
+                storagePerm == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "All permissions granted!", Toast.LENGTH_SHORT).show();
+            // Proceed with app logic
+        } else {
+            Toast.makeText(this,
+                    "App requires Camera and Storage permissions. Please enable them in Settings.",
+                    Toast.LENGTH_LONG).show();
+
+            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                    Uri.fromParts("package", getPackageName(), null));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+    }
+}
+*/
+
+  /*  @Override
+
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
             case REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS: {
 
                 Map<String, Integer> perms = new HashMap<String, Integer>();
                 // Initial
-                perms.put(Manifest.permission.CAMERA, PackageManager.PERMISSION_GRANTED);
-                perms.put(android.Manifest.permission.READ_EXTERNAL_STORAGE, PackageManager.PERMISSION_GRANTED);
+                perms.put(permission.CAMERA, PackageManager.PERMISSION_GRANTED);
+                perms.put(permission.READ_EXTERNAL_STORAGE, PackageManager.PERMISSION_GRANTED);
 
                 // Fill with results
                 for (int i = 0; i < permissions.length; i++)
                     perms.put(permissions[i], grantResults[i]);
-                if (perms.get(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
-                        && perms.get(android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                if (perms.get(permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+                        && perms.get(permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                     // All Permissions Granted
                     return;
                 } else {
@@ -280,6 +387,7 @@ public class PrescriptionActivity extends AppCompatActivity  implements
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
+*/
 
 
     private void uploadDocumentFile(File file) {

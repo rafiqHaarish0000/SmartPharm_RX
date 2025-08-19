@@ -100,9 +100,9 @@ public class HomeFragment extends Fragment {
         promotion_viewPager = view.findViewById(R.id.promotion_viewPager);
 
 
-        localStorage = new LocalStorage(getContext());
+      /*  localStorage = new LocalStorage(getContext());
         user = gson.fromJson(localStorage.getUserLogin(), User.class);
-        token = new Token(user.getToken());
+        token = new Token(user.getToken());*/
        getCategoryData();
         getNewProduct();
         getPopularProduct();

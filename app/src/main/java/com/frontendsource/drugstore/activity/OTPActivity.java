@@ -139,8 +139,14 @@ public class OTPActivity extends BaseActivity {
         progress.setVisibility(View.VISIBLE);
         if(otp.length()<6){
             Toast.makeText(this, "Please Enter Valid OTP", Toast.LENGTH_SHORT).show();
+            progress.setVisibility(View.GONE);
         }else{
-            user.setOtp(otp);
+            Toast.makeText(OTPActivity.this, "OTP Verified successfully.", Toast.LENGTH_SHORT).show();
+            progress.setVisibility(View.GONE);
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
+        }
+         /*   user.setOtp(otp);
             Call<UserResult>call = RestClient.getRestService(getApplicationContext()).userActivate(user);
             call.enqueue(new Callback<UserResult>() {
                 @Override
@@ -174,6 +180,6 @@ public class OTPActivity extends BaseActivity {
                     progress.setVisibility(View.GONE);
                 }
             });
-        }
+        }*/
     }
 }

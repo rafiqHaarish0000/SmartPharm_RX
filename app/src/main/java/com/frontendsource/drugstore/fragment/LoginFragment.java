@@ -215,7 +215,12 @@ public class LoginFragment extends Fragment implements OnClickListener {
 
     private void login(User user) {
         showProgressDialog();
-        Call<UserResult> call = RestClient.getRestService(getContext()).login(user);
+       // localStorage.createUserLoginSession(userString);
+
+            startActivity(new Intent(getContext(), OTPActivity.class));
+            getActivity().finish();
+
+      /*  Call<UserResult> call = RestClient.getRestService(getContext()).login(user);
         call.enqueue(new Callback<UserResult>() {
             @Override
             public void onResponse(Call<UserResult> call, Response<UserResult> response) {
@@ -244,7 +249,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
                 } else {
                     new CustomToast().Show_Toast(getActivity(), view,
                             "Please Enter Correct Data");
-                }
+
 
                 hideProgressDialog();
             }
@@ -254,7 +259,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
                 Log.d("Error==> ", t.getMessage());
                 hideProgressDialog();
             }
-        });
+        });}*/
     }
 
     public void vibrate(int duration) {
